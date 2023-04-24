@@ -1,3 +1,27 @@
+// largest prime factor of the number 600851475143
+const isPrime = function(num) {
+  let factor = 3;
+
+  while(factor <= Math.sqrt(num)) {
+    if(num % factor === 0) return false;
+    factor += 2;
+  }
+
+  return true;
+}
+
+const nextPrime = function(numbers) {
+  let potentialPrime = numbers.currPrime + numbers.increment;
+  numbers.increment = numbers.increment % 4 + 2;
+  numbers.currPrime = potentialPrime;
+
+  return isPrime(potentialPrime) ? numbers : nextPrime(numbers);
+}
+
+const largestPrimeFactor = function(n) {
+
+}
+
 // Sum of all even fibonacii terms
 const fibonacciSumOfEven = function() {
   let secondLastTerm = 0;
@@ -33,3 +57,4 @@ const sumOfMultiples = function() {
   return sum; 
 }
 
+exports.largestPrimeFactor = largestPrimeFactor ;
