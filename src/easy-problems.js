@@ -10,16 +10,35 @@ const isPrime = function(num) {
   return true;
 }
 
-const nextPrime = function(numbers) {
-  let potentialPrime = numbers.currPrime + numbers.increment;
-  numbers.increment = numbers.increment % 4 + 2;
-  numbers.currPrime = potentialPrime;
+const nextPrime = function(prime) {
+  if(prime.current === 2) return {current: 3, increment: 2};
 
-  return isPrime(potentialPrime) ? numbers : nextPrime(numbers);
+  if(prime.current === 3) return {current: 5, increment: 2};
+
+  let potentialPrime = prime.current + prime.increment;
+  prime.increment = prime.increment % 4 + 2;
+  prime.current = potentialPrime;
+
+  return isPrime(potentialPrime) ? prime : nextPrime(prime);
 }
 
-const largestPrimeFactor = function(n) {
+const largestPrimeFactor = function(num) {
+  let modifiableCopyOfNum = num;
 
+  let prime = {
+    current: 2,
+    increment: 1,
+  };
+
+  while(modifiableCopyOfNum !== 1) {
+    if(modifiableCopyOfNum % prime.current === 0) {
+      modifiableCopyOfNum = modifiableCopyOfNum / prime.current;
+    } else {
+      prime = nextPrime(prime);
+    }
+  }
+
+  return prime.current;
 }
 
 // Sum of all even fibonacii terms
@@ -58,3 +77,4 @@ const sumOfMultiples = function() {
 }
 
 exports.largestPrimeFactor = largestPrimeFactor ;
+exports.nextPrime = nextPrime;
