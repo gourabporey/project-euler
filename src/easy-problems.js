@@ -1,3 +1,35 @@
+// largest palindromic number as the multiple of two number
+const isPalindrome = function(text) {
+  const reversed = text.toString().split("").reverse().join("");
+  return text.toString() === reversed;
+}
+
+const getUpperLimit = function(digit) {
+  return (10 ** digit) - 1; 
+}
+
+const getLowerLimit = function(digit) {
+  return 10 ** (digit - 1);
+}
+
+const largestPalindromeProduct = function(digit) {
+  const upperLimit = getUpperLimit(digit);
+  const lowerLimit = getLowerLimit(digit);
+  let max = -Infinity;
+
+  for(let num1 = upperLimit; num1 >= lowerLimit; num1--) {
+    for(let num2 = upperLimit; num2 >= lowerLimit; num2--) {
+      if(num1 % 10 !== 0 && num2 % 10 !== 0) {
+        if(isPalindrome(num1 * num2)) {
+          max = Math.max(max, num1 * num2);
+        }
+      }
+    }
+  }
+
+  return max;
+}
+
 // largest prime factor of the number 600851475143
 const isPrime = function(num) {
   let factor = 3;
@@ -78,3 +110,4 @@ const sumOfMultiples = function() {
 
 exports.largestPrimeFactor = largestPrimeFactor ;
 exports.nextPrime = nextPrime;
+exports.largestPalindromeProduct = largestPalindromeProduct;

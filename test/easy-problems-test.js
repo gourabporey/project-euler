@@ -6,6 +6,7 @@ const displayTestSummary = testing.displayTestSummary;
 const displayTestResult = testing.displayTestResult;
 const largestPrimeFactor = problem.largestPrimeFactor;
 const nextPrime = problem.nextPrime;
+const largestPalindromeProduct = problem.largestPalindromeProduct;
 
 const testNextPrime = function() {
   const functionName = "nextPrime({current: prime, increment: number})";
@@ -73,9 +74,35 @@ const testLargestPrimeFactor = function() {
   displayTestResult(functionName);
 }
 
+const testLargestPalindromeProduct = function() {
+  const functionName = "largestPalindromeProduct()";
+
+  it("Should give 9 for single digit", { 
+    actual: largestPalindromeProduct(1),
+    expected: 9,
+    functionName: functionName,
+  });
+
+  // 99 * 91
+  it("Should give 9009 for double digit", { 
+    actual: largestPalindromeProduct(2),
+    expected: 9009,
+    functionName: functionName,
+  });
+
+  it("Should give 906609 for triple digit", { 
+    actual: largestPalindromeProduct(3),
+    expected: 906609,
+    functionName: functionName,
+  });
+
+  displayTestResult(functionName);
+}
+
 const test = function() {
   testNextPrime();
   testLargestPrimeFactor();
+  testLargestPalindromeProduct();
   displayTestSummary();
 }
 
