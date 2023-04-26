@@ -7,6 +7,9 @@ const displayTestResult = testing.displayTestResult;
 const largestPrimeFactor = problem.largestPrimeFactor;
 const nextPrime = problem.nextPrime;
 const largestPalindromeProduct = problem.largestPalindromeProduct;
+const smallestMultiple = problem.smallestMultiple;
+const gcf = problem.gcf;
+const nthPrime = problem.nthPrime;
 
 const testNextPrime = function() {
   const functionName = "nextPrime({current: prime, increment: number})";
@@ -99,10 +102,74 @@ const testLargestPalindromeProduct = function() {
   displayTestResult(functionName);
 }
 
+const testGcf = function() {
+  const functionName = "gcf(a,b)";
+
+  it("Should give 1 for 1 and 2", {
+    actual: gcf(1, 2),
+    expected: 1,
+    functionName: functionName,
+  });
+
+  it("Should give 17 for 34 and 51", {
+    actual: gcf(34, 51),
+    expected: 17,
+    functionName: functionName,
+  });
+
+  it("Should give 7 for 7 and 7", {
+    actual: gcf(7, 7),
+    expected: 7,
+    functionName: functionName,
+  });
+
+  displayTestResult(functionName);
+}
+
+const testSmallestMultiple = function () {
+  const functionName = "smallestMultiple()";
+
+  it("Should give 60 for smallest multiple upto 5", {
+    actual: smallestMultiple(5),
+    expected: 60,
+    functionName: functionName,
+  });
+
+  displayTestResult(functionName);
+}
+
+const testNthPrime = function() {
+  const functionName = "nthPrime(n)";
+
+  it("Should give the first prime number", {
+    actual: nthPrime(1),
+    expected: 2,
+    functionName: functionName,
+  });
+
+  it("Should give the second prime number", {
+    actual: nthPrime(2),
+    expected: 3,
+    functionName: functionName,
+  });
+
+  it("Should give the nth prime number", {
+    actual: nthPrime(100),
+    expected: 541,
+    functionName: functionName,
+  });
+
+  displayTestResult(functionName);
+}
+
+
 const test = function() {
   testNextPrime();
   testLargestPrimeFactor();
   testLargestPalindromeProduct();
+  testSmallestMultiple();
+  testGcf();
+  testNthPrime();
   displayTestSummary();
 }
 
