@@ -13,12 +13,10 @@ const sumSquareDifference = function(n) {
 
 // smallest multiple upto number
 const gcf = function(a, b) {
-  let min = a;
-  let max = b;
+  let [min, max] = [a, b];
 
   if(a > b) {
-    min = b;
-    max = a;
+    [min, max] = [b, a];
   }
 
   if(max % min === 0) return min;
@@ -141,9 +139,7 @@ const largestPrimeFactor = function(num) {
 
 // Sum of all even fibonacii terms
 const fibonacciSumOfEven = function() {
-  let secondLastTerm = 0;
-  let lastTerm = 1;
-  let sum = 0;
+  let [secondLastTerm, lastTerm, sum] = [0, 1, 0];
 
   let counter = 0;
   while(secondLastTerm <= 4000000) {
@@ -151,9 +147,7 @@ const fibonacciSumOfEven = function() {
       sum += secondLastTerm;
     }
 
-    const temp = secondLastTerm;
-    secondLastTerm = lastTerm;
-    lastTerm += temp;
+    [secondLastTerm, lastTerm] = [lastTerm, lastTerm + secondLastTerm];
     counter++;
   }
 
@@ -194,18 +188,34 @@ const largestProductInASeries = function() {
   return maxProduct;
 }
 
+const square = function(num) {
+  return Math.pow(num, 2);
+}
+
+const sum = function() {
+  return Array.from(arguments).reduce(function(summation, a) {
+    return summation + a;
+  });
+}
+
+const product = function() {
+  return Array.from(arguments).reduce(function(currentProduct, a) {
+    return currentProduct * a;
+  });
+}
+
 const pythagorianTriplet = function() {
-  let b = 500;
+  const expectedSum = 1000;
+  let b = expectedSum / 2;
 
   while(b > 0) {
-    let a = 300;
+    let a = b;
     while(a > 0) {
-      const c = Math.sqrt(a ** 2 + b ** 2);
-      console.log(a, b, c);
-      if (a + b + c === 1000) return a * b * c;
-      a--;
+      const c = Math.sqrt(square(a) + square(b));
+      if (sum(a, b, c) === 1000) return product(a, b, c);
+      a -= 1;
     }
-    b--;
+    b -= 1;
   }
 
   return 0;
