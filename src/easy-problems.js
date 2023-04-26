@@ -211,6 +211,41 @@ const pythagorianTriplet = function() {
   return 0;
 }
 
+const sumOfPrimes = function(number) {
+  let prime = {
+    current: 2,
+  };
+
+  let sum = 0;
+
+  while(prime.current < number) {
+    sum += prime.current;
+    prime = nextPrime(prime);
+  }
+
+  return sum;
+}
+
+// Problem 12: Highly divisible triangular number
+const triangularNumberOfDivisor = function(divisorCount) {
+  let currentDivisorCount = 0;
+  let currentTriangularTerm = 1;
+
+  while(true) {
+    const currentNum = sumOfSeries(currentTriangularTerm);
+
+    for(let i = 1; i < Math.sqrt(currentNum); i++) {
+      if(currentNum % i === 0) currentDivisorCount++; 
+    }
+
+    if(currentDivisorCount * 2 > divisorCount) return currentNum;
+
+    currentDivisorCount = 0;
+    currentTriangularTerm++;
+  }
+
+  return 1;
+}
 
 exports.largestPrimeFactor = largestPrimeFactor ;
 exports.nextPrime = nextPrime;
@@ -218,3 +253,5 @@ exports.largestPalindromeProduct = largestPalindromeProduct;
 exports.gcf = gcf;
 exports.smallestMultiple = smallestMultiple;
 exports.nthPrime = nthPrime;
+exports.sumOfPrimes = sumOfPrimes;
+exports.triangularNumberOfDivisor = triangularNumberOfDivisor;

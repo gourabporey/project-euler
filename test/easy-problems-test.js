@@ -10,6 +10,8 @@ const largestPalindromeProduct = problem.largestPalindromeProduct;
 const smallestMultiple = problem.smallestMultiple;
 const gcf = problem.gcf;
 const nthPrime = problem.nthPrime;
+const sumOfPrimes = problem.sumOfPrimes;
+const triangularNumberOfDivisor = problem.triangularNumberOfDivisor;
 
 const testNextPrime = function() {
   const functionName = "nextPrime({current: prime, increment: number})";
@@ -162,6 +164,53 @@ const testNthPrime = function() {
   displayTestResult(functionName);
 }
 
+const testSumOfPrimes = function() {
+  const functionName = "sumOfPrimes()";
+
+  it("Should give the first prime number for 2", {
+    actual: sumOfPrimes(3),
+    expected: 2,
+    functionName: functionName,
+  });
+
+  it("Should give the sum of first 2 prime numbers", {
+    actual: sumOfPrimes(5),
+    expected: 5,
+    functionName: functionName,
+  });
+
+  it("Should give the sum of any prime numbers upto N", {
+    actual: sumOfPrimes(2000000),
+    expected: 142913828922,
+    functionName: functionName,
+  });
+
+  displayTestResult(functionName);
+}
+
+const testTriangularNumberOfDivisor = function() {
+  const functionName = "triangularNumberOfDivisor()";
+
+  it("Should give triangular number 3 having divisors more than 1", {
+    actual: triangularNumberOfDivisor(1),
+    expected: 3,
+    functionName: functionName,
+  });
+
+  it("Should give triangular number 6 having divisors more than 2", {
+    actual: triangularNumberOfDivisor(2),
+    expected: 6,
+    functionName: functionName,
+  });
+
+  it("Should give triangular number 28 having divisors more than 4", {
+    actual: triangularNumberOfDivisor(4),
+    expected: 28,
+    functionName: functionName,
+  });
+
+  displayTestResult(functionName);
+}
 
 const test = function() {
   testNextPrime();
@@ -170,6 +219,8 @@ const test = function() {
   testSmallestMultiple();
   testGcf();
   testNthPrime();
+  testSumOfPrimes();
+  testTriangularNumberOfDivisor();
   displayTestSummary();
 }
 
